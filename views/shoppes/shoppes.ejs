@@ -9,8 +9,12 @@
     <%- include('../partials/_navbar.ejs') %>
   <h1>Middle Earth Marketplace</h1>
   <p>
-    <a href="/shoppes/new">Add a new Shop</a><br>
-    This is where the shoppes are going to be. 
+    <% shoppes.forEach(shoppe => { %>
+      <li>
+        <img src="<%= shoppe.shoppePhoto %>"><%= shoppe.shoppeKeeper %></img>
+        <a href="/shoppes/shoppe/<%= shoppe._id %>"><%= shoppe.shoppeName %></a>, <%= shoppe.location %></li>
+      <% }); %>
+    <a href="/shoppes/shoppe/new">Add a new Shop</a><br> 
   </p>
 </body>
 </html>

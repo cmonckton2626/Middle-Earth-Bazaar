@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
 
-const shoppeSchema = mongoose.Schema({
-  shoppeName: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: String,
-    required: true,
-  },
-  shoppeKeeper: {
-    type: String,
-    required: true,
-  }
+const reviewSchema = mongoose.Schema({
+    reviewer: { type: String, required: true },
+    review: { type: String, required: true}
 });
 
-const shoppe = mongoose.model('User', shoppeSchema);
+const shoppeSchema = mongoose.Schema({
+    shoppeName: { type: String, required: true },
+    location: { type: String, required: true },
+    shoppeKeeper: { type: String, required: true },
+    shoppePhoto: { type: String},
+    reviews: { type: [reviewSchema]}
+});
 
-module.exports = shoppe;
+const Shoppe = mongoose.model('Shoppe', shoppeSchema);
+
+module.exports = Shoppe;

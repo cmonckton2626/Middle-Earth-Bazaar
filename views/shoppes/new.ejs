@@ -9,15 +9,18 @@
 
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <form action="/listings" method="POST">
+    <form action="/shoppes/shoppe" method="POST">
         <label for="shoppe-name">Shoppe Name:</label>
         <input type="text" name="shoppeName" id="shoppe-name" required/>
         <br>
         <label for="location">Location:</label>
-        <input type="text" name="location:" id="location" required/>
+        <input type="text" name="location" id="location" required/>
         <br>
         <label for="shoppe-keeper">Shoppekeeper:</label>
         <input type="text" name="shoppeKeeper" id="shoppe-keeper" required/>
+        <br>
+        <label for="shoppe-photo">Shoppe Photo URL:</label>
+        <input type="text" name="shoppePhoto" id="shoppe-photo"/>
         <br><br>
         <button type="submit">Add New Shoppe</button>
     </form>

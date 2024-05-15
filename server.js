@@ -12,6 +12,8 @@ const port = process.env.PORT ? process.env.PORT : "3000";
 const authController = require("./controllers/auth.js");
 const shopController = require("./controllers/shoppes.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
+const isSignedIn = require("./middleware/is-signed-in.js");
+const Shoppe = require("./models/shoppe.js");
 
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
@@ -35,8 +37,14 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
+app.get("/shoppes", async (req, res) => {
+  const allShoppes = await Shoppe.find();
+  res.render("shoppes/shoppes", { shoppes: allShoppes });
+});
+
 app.use("/auth", authController);
-app.use("/shoppes", shopController);
+// app.use(isSignedIn);
+app.use("/shoppes/shoppe", shopController);
 
 
 
