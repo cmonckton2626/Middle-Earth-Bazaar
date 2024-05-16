@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= shoppe.shoppeName %></title>
+  <link rel="stylesheet" type="text/css" href="/shoppe.css">
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+  <h1><%= shoppe.shoppeName %></h1>
+  <p>
+    <img src="<%= shoppe.shoppePhoto %>"></img><br>
+    Shoppe Keeper: <%= shoppe.shoppeKeeper %><br>
+    Located in lovely: <%= shoppe.location %>
+    <br><br><br>
+    look at all of the reviews this shop has
+    <% let index = 0 %>
+    <% shoppe.reviews.forEach(review => { %>
+      <li>
+        <%= review.reviewer %>: <%= review.review %>
+        <% if(user && review.reviewer === user.username) { %>
+          <a href="/shoppes/shoppe/<%= shoppe._id %>/<%= index %>/editReview" class="button"> <button>Edit</button></a>
+          <a href="/shoppes/shoppe/<%= shoppe._id %>/<%= index %>/deleteReview" class="button"> <button>Delete</button></a>
+      <% } %>
+      <% index = index+1 %>
+      </li>
+      <% }); %>
+    <br><br><br>
+
+    <a href="/shoppes/shoppe/<%= shoppe._id %>/addReview" class="button"><button>Add Review</button></a>
+  </p>
+</body>
+</html>

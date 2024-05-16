@@ -20,6 +20,7 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}. 💍`);
 });
 
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 app.set('view engine', 'ejs');
@@ -43,7 +44,7 @@ app.get("/shoppes", async (req, res) => {
 });
 
 app.use("/auth", authController);
-// app.use(isSignedIn);
+app.use(isSignedIn);
 app.use("/shoppes/shoppe", shopController);
 
 

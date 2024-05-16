@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Review</title>
+</head>
+
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <form action="/shoppes/shoppe/<%= shoppe._id %>/<%= reviewId %>/?_method=PUT" method="POST">
+        <input type="hidden" name="reviewId" value="<%= reviewId %>">
+        <input type="hidden" name="shoppeId" value="<%= shoppe._id %>">
+        <label for="reviewText">Update your review for <%= shoppe.shoppeName %>:</label>
+        <br><br>
+        <textarea name="reviewText" id="reviewText" rows="4" cols="50"><%= shoppe.reviews[reviewId].review %></textarea>
+        <br><br>
+        <button type="submit">Update Your Review</button>
+    </form>
+</body>
+
+</html>

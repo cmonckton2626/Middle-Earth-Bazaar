@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shoppes</title>
+  <link rel="stylesheet" type="text/css" href="/shoppes.css">
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
@@ -11,9 +12,9 @@
   <p>
     <% shoppes.forEach(shoppe => { %>
       <li>
-        <img src="<%= shoppe.shoppePhoto %>"><%= shoppe.shoppeKeeper %></img>
-        <a href="/shoppes/shoppe/<%= shoppe._id %>"><%= shoppe.shoppeName %></a>, <%= shoppe.location %></li>
-      <% }); %>
+        <a href="/shoppes/shoppe/<%= shoppe._id %>"><img src="<%= shoppe.shoppePhoto %>"></img></a>
+        <a href="/shoppes/shoppe/<%= shoppe._id %>"><%= shoppe.shoppeName %></a>, <%= shoppe.location %>
+      </li><% }); %>
     <a href="/shoppes/shoppe/new">Add a new Shop</a><br> 
   </p>
 </body>
