@@ -5,19 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Review</title>
+    <link rel="stylesheet" type="text/css" href="/shoppes.css">
 </head>
 
 <body>
-    <%- include('../partials/_navbar.ejs') %>
-    <form action="/shoppes/shoppe/<%= shoppe._id %>/<%= reviewId %>/?_method=PUT" method="POST">
-        <input type="hidden" name="reviewId" value="<%= reviewId %>">
-        <input type="hidden" name="shoppeId" value="<%= shoppe._id %>">
-        <label for="reviewText">Update your review for <%= shoppe.shoppeName %>:</label>
-        <br><br>
-        <textarea name="reviewText" id="reviewText" rows="4" cols="50"><%= shoppe.reviews[reviewId].review %></textarea>
-        <br><br>
-        <button type="submit">Update Your Review</button>
-    </form>
+    <div>
+        <%- include('../partials/_navbar.ejs') %>
+        <form action="/shoppes/shoppe/<%= shoppe._id %>/<%= reviewId %>/?_method=PUT" method="POST">
+            <input type="hidden" name="reviewId" value="<%= reviewId %>">
+            <input type="hidden" name="shoppeId" value="<%= shoppe._id %>">
+    </div>
+    <div>
+            <label for="reviewText">Update your review for <%= shoppe.shoppeName %>:</label>
+            <br><br>
+            <textarea name="reviewText" id="reviewText" rows="4" cols="50"><%= shoppe.reviews[reviewId].review %></textarea>
+    </div>
+    <div>
+            <button type="submit" class="big-button">Update Your Review</button>
+        </form>
+        <form method="POST" action="/shoppes/shoppe/<%= shoppe._id %>/<%= reviewId %>?_method=DELETE">
+            <button type="submit" class="big-button">Delete</button>
+        </form>
+    </div>
 </body>
 
 </html>

@@ -1,4 +1,141 @@
-img {
-    max-width: 20vw;
-    max-height: 20vh;
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    background-image: url('https://images.squarespace-cdn.com/content/v1/613ff93b8fa1470440856567/1634316914999-K8H2ZNWUM3A21WMA4MRU/Lord+of+the+Rings+Mirkwood+by+Alan+Lee.jpeg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+body {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 900;
+    max-width: 80vw;
+    max-height: 80vh;
+    text-align: center;
+    justify-content: center;
+    margin: 5vh auto;
+    padding-bottom: 25vh;
+}
+
+div {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 20px;
+    color: black;
+    margin-bottom: 1rem; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.5rem;
+    /* margin: 15px; */
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.bigger {
+    font-size: 1.5rem;
+}
+
+.shoppe-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: center; /* Centers the items horizontally */
+}
+
+.shoppe-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 15vw;
+    color: black;
+}
+
+.review-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.review-list li {
+    display: flex;
+    align-items: left;
+    position: relative; /* Position the parent container */
+}
+
+.review-content {
+    flex-grow: 1; /* Allow content to expand and fill available space */
+    padding: 10px;
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+.review-buttons {
+    position: absolute; /* Position the buttons absolutely */
+    top: 10px;
+    right: -30px;
+}
+
+.review-list li button {
+    margin-left: 10px; /* Add spacing between buttons */
+}
+
+.review-list li form {
+    margin: 0; /* Remove default form margin */
+}
+
+.review-list li a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+.big {
+    max-width: 65vw;
+    max-height: 65vh;
+    min-width: 300px;
+    min-height: 200px;
+}
+
+.small {
+    max-width: 15vw;
+    max-height: 15vh;
+    min-width: 100px;
+    min-height: 70px;
+}
+
+button {
+    font-family: inherit; /* Inherit font from parent element */
+    border: none;
+    background-color: #009602; /* Change color to match your design */
+    color: #ffffff; /* Text color */
+    padding: 3px 5px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add round corners */
+    cursor: pointer; /* Add pointer cursor */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #03540c; /* Darker shade on hover */
+}
+
+.big-button {
+    padding: 5px 10px;
+    font-size: 1.3rem;
 }

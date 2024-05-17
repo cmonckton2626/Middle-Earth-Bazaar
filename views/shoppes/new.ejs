@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Shoppe</title>
+    <link rel="stylesheet" type="text/css" href="/shoppe.css">
 </head>
 
 <body>
+    <div>
     <%- include('../partials/_navbar.ejs') %>
     <form action="/shoppes/shoppe" method="POST">
         <label for="shoppe-name">Shoppe Name:</label>
@@ -22,7 +24,7 @@
         <label for="shoppe-photo">Shoppe Photo URL:</label>
         <input type="textarea" name="shoppePhoto" id="shoppe-photo"/>
         <br><br>
-        <button type="submit">Add New Shoppe</button>
+        <button type="submit" class="big-button">Add New Shoppe</button>
     </form>
 </body>
 

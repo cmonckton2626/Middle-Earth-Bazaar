@@ -7,15 +7,23 @@
   <link rel="stylesheet" type="text/css" href="/shoppes.css">
 </head>
 <body>
+  <div>
     <%- include('../partials/_navbar.ejs') %>
-  <h1>Middle Earth Marketplace</h1>
-  <p>
-    <% shoppes.forEach(shoppe => { %>
-      <li>
-        <a href="/shoppes/shoppe/<%= shoppe._id %>"><img src="<%= shoppe.shoppePhoto %>"></img></a>
-        <a href="/shoppes/shoppe/<%= shoppe._id %>"><%= shoppe.shoppeName %></a>, <%= shoppe.location %>
-      </li><% }); %>
-    <a href="/shoppes/shoppe/new">Add a new Shop</a><br> 
-  </p>
+    <h1>Middle Earth Marketplace</h1>
+  </div>
+  <div>
+    <ul class="shoppe-list">
+      <p>
+        <% shoppes.forEach(shoppe => { %>
+          <li class="shoppe-item">
+            <a href="/shoppes/shoppe/<%= shoppe._id %>"><img src="<%= shoppe.shoppePhoto %>" alt="Shoppe Photo" class="shoppe-photo small"></img></a>
+            <a href="/shoppes/shoppe/<%= shoppe._id %>"><%= shoppe.shoppeName %></a><%= shoppe.location %>
+          </li><% }); %>
+      </p>
+    </ul>
+  </div>
+  <div>
+    <a href="/shoppes/shoppe/new">Add a New Shoppe</a>
+  </div>
 </body>
 </html>

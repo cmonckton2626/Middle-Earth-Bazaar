@@ -1,5 +1,4 @@
 const express = require("express");
-// const { route } = require("./auth");
 const router = express.Router();
 
 const Shoppe = require('../models/shoppe.js');
@@ -30,7 +29,7 @@ router.post("/", async (req, res) => {
         
         res.redirect("/shoppes");
     } catch (error) {
-        console.log(error);
+        res.redirect(`/`);;
         res.redirect("/shoppes/shoppe/new");
     }
 });
@@ -45,7 +44,7 @@ router.get("/:shoppeId/addReview", async (req, res) => {
         const soloShoppe = await Shoppe.findById(req.params.shoppeId);
         res.render("reviews/new.ejs", { shoppe: soloShoppe });
     } catch (error) {
-        console.log(error)
+        res.redirect(`/`);
     }
 });
 
@@ -58,7 +57,7 @@ router.post("/:shoppeId", async (req, res) => {
         await shoppe.save();
         res.redirect(`${shoppe._id}`)
     } catch (error) {
-        console.log(error)
+        res.redirect(`/`);
     }
 });
 
@@ -67,16 +66,14 @@ router.get("/:shoppeId/:reviewId/editReview", async (req, res) => {
         const soloShoppe = await Shoppe.findById(req.params.shoppeId);
         res.render("reviews/edit.ejs", { shoppe: soloShoppe, reviewId: req.params.reviewId })
     } catch (error) {
-        console.log(error)
+        res.redirect(`/`);
     }
 });
 
 router.put("/:shoppeId/:reviewId", async (req, res) => {
     try {
-        
-        console.log(req.body)
         const editShoppe = await Shoppe.findById(req.params.shoppeId)
-        //  editShoppe.reviews.splice(req.params.reviewId, 1)
+
         editShoppe.reviews[req.params.reviewId].review = req.body.reviewText
         const modifiedShoppe = await Shoppe.findByIdAndUpdate(
             req.params.shoppeId,
@@ -86,18 +83,32 @@ router.put("/:shoppeId/:reviewId", async (req, res) => {
         ); 
         res.render("./shoppes/show.ejs", { shoppe: editShoppe })
     } catch (error) {
-        console.log(error)
+        res.redirect(`/`);
     }
 });
 
-// edit route i think
-// const existingShoppeData = {
-        //     shoppeName: req.body.shoppeName,
-        //     location: req.body.location,
-        //     shoppeKeeper: req.body.shoppeKeeper
-        // };
-        // const existingShoppe = await Shoppe.findOne(existingShoppeData)
-        // 
+router.delete("/:shoppeId/:reviewId", async (req, res) => {
+    const shoppeId = req.params.shoppeId;
+    const reviewId = req.params.reviewId;
+    try {
+        const shoppe = await Shoppe.findById(shoppeId);
+        if (!shoppe) {
+            return res.status(404).send("Shoppe not found");
+        }
+        if (reviewId < 0 || reviewId >= shoppe.reviews.length) {
+            return res.status(404).send("Review not found");
+        }
+        shoppe.reviews.splice(reviewId, 1);
+        await shoppe.save();
+
+        res.render("./shoppes/show.ejs", { shoppe: shoppe });
+    } 
+    catch (err) {
+        res.redirect(`/`);
+    }
+});
+
+
 
         
 module.exports = router;

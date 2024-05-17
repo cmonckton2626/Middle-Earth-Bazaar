@@ -4,31 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= shoppe.shoppeName %></title>
-  <link rel="stylesheet" type="text/css" href="/shoppe.css">
+  <link rel="stylesheet" type="text/css" href="/shoppes.css">
 </head>
 <body>
+  <div>
     <%- include('../partials/_navbar.ejs') %>
-  <h1><%= shoppe.shoppeName %></h1>
+    <h1><%= shoppe.shoppeName %></h1>
+  </div>
   <p>
-    <img src="<%= shoppe.shoppePhoto %>"></img><br>
-    Shoppe Keeper: <%= shoppe.shoppeKeeper %><br>
-    Located in lovely: <%= shoppe.location %>
-    <br><br><br>
-    look at all of the reviews this shop has
+    <img src="<%= shoppe.shoppePhoto %>" alt="Shoppe Photo" class="shoppe-photo big"></img><br>
+    <div class="bigger">
+      Shoppe Keeper: <%= shoppe.shoppeKeeper %><br>
+      Located in lovely: <%= shoppe.location %>
+    </div>
+      <br>
+    <div class="bigger">
+      Check out these reviews from previous travelers!
+    </div>
     <% let index = 0 %>
     <% shoppe.reviews.forEach(review => { %>
-      <li>
-        <%= review.reviewer %>: <%= review.review %>
-        <% if(user && review.reviewer === user.username) { %>
-          <a href="/shoppes/shoppe/<%= shoppe._id %>/<%= index %>/editReview" class="button"> <button>Edit</button></a>
-          <a href="/shoppes/shoppe/<%= shoppe._id %>/<%= index %>/deleteReview" class="button"> <button>Delete</button></a>
-      <% } %>
-      <% index = index+1 %>
-      </li>
+      <div>
+        <ul class="review-list">
+          <li>
+            <div class="review-content">
+              <%= review.reviewer %>: <%= review.review %>
+              <span class="review-buttons">
+                <% if(user && review.reviewer === user.username) { %>
+                  <a href="/shoppes/shoppe/<%= shoppe._id %>/<%= index %>/editReview" class="button"><button>Edit</button></a>
+                  
+                <% } %>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <% index = index + 1 %>
       <% }); %>
+      
     <br><br><br>
-
-    <a href="/shoppes/shoppe/<%= shoppe._id %>/addReview" class="button"><button>Add Review</button></a>
+    <div>
+      <a href="/shoppes/shoppe/<%= shoppe._id %>/addReview" class="button"><button class="big-button">Add Review</button></a>
+    </div>
   </p>
 </body>
 </html>

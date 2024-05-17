@@ -5,17 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Review</title>
+    <link rel="stylesheet" type="text/css" href="/shoppe.css">
+
 </head>
 
 <body>
+    <div>
     <%- include('../partials/_navbar.ejs') %>
     <form action="/shoppes/shoppe/<%= shoppe._id %>" method="POST">
         <input type="hidden" name="shoppeId" value="<%= shoppe._id %>">
         <label for="review-text">Your review of the shoppe goes here:</label>
-        <br><br>
+    </div>
         <textarea name="reviewText" id="review-text" rows="4" cols="50"></textarea>
         <br><br>
-        <button type="submit">Add New Review</button>
+    <div>
+        <button type="submit" class="big-button">Add New Review</button>
+    </div>
     </form>
 </body>
 
